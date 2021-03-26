@@ -54,9 +54,9 @@ def apply_ridgee_fit(X_train, y_train):
     """
     # Mise en place d'une recherche sur grille
     # valeurs du paramètre C
-    alpha_range = np.logspace(-4, 8, 10)
+    alpha_range = np.logspace(-8, 16, 40)
     # valeurs du paramètre gamma
-    gamma_range = np.logspace(-2, 1, 10)
+    gamma_range = np.logspace(-4, 2, 40)
     
     # grille de paramètres
     param_grid = {'alpha': alpha_range, 'gamma': gamma_range}

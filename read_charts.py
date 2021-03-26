@@ -52,6 +52,7 @@ FIRST_COL = 1
 def open_file(charts_file, chart_sheet_name):
     """Ouvre le fichier charts_file et la feuille chart_sheet_name et retourne
     les objets Book et Sheet
+    
     Affiche les erreurs d'access
     
     :type charts_file: str
@@ -137,31 +138,6 @@ def import_chart_2D(charts_file, chart_sheet_name):
     return chart
 
 
-def trans_chart_to_training_data(chart):
-    """Transforme un tableau d'abaque en 2D en un ensemble de données utilisable pour l'apprentissage
-    
-    :type charts: DataFrame
-    :param charts: Object with a 2D shape
-    :rtype: DataFrame
-    :return: Table of 3 columns : x1, x2, y1
-    """
-    res = pd.DataFrame(columns=("x1", "x2", "y"))
-    
-    for col in chart.columns:
-        for idx in chart.index:
-            res = res.append(
-                {"x1":idx, "x2":col, "y":chart.loc[idx, col]},
-                ignore_index=True)
-    
-    return res
-
-def remove_empty_rows(data, check_col="y"):
-    """
-    """
-    return data[data[check_col] != ""]
-
-
 
 if __name__ == "__main__":
     chart = import_chart_2D(CHARTS_FILE, KBR_SHEET_NAME)
-    data = remove_empty_rows(trans_chart_to_training_data(chart))
